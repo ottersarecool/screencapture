@@ -44,7 +44,8 @@ if ! link="$("./screens-uploader.bash" "$file")"; then
     exit 1
 fi
 
+echo -n "$link" | xsel -ib
+timeout 2 feh --scale-down --no-xinerama -xdZg 400x256+1520-0 "$file" | notify-send -a "$title" "Upload successful!" "$link"
+paplay ~/message.oga
 rm -f "$file"
 
-echo -n "$link" | xsel -ib
-notify-send -a "$title" "Upload successful!" "The link has been copied to clipboard."
